@@ -3,6 +3,19 @@
 #+options: toc:nil
 #+LATEX_HEADER: \usepackage{parskip}
 
+* Practical tasks
+
+[Repo](https://github.com/MegaBluejay/dmhomespring)
+
+Instructions:
+
+ - [install sagemath](https://doc.sagemath.org/html/en/installation/)
+ - sage --python -m pip install -r requirements.txt
+ - sage -n
+ - in this jupyter session open provided .ipynb
+
+An html export of the notebook is also provided.
+
 * Theorem 1 (Triangle Inequality)
 
 ** Statement
