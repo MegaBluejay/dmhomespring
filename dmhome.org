@@ -1,0 +1,176 @@
+#+STARTUP: latexpreview
+#+options: num:nil
+#+options: toc:nil
+#+LATEX_HEADER: \usepackage{parskip}
+
+* Theorem 1 (Triangle Inequality)
+
+** Statement
+
+For any connected graph $G = \langle V, E \rangle$:
+
+$\forall x,y,z \in V : dist(x,y) + dist(y,z) \geq dist(x,z)$
+
+** Definitions
+
+We define $dist(x,y)$ as $\min(|x \leadsto y|)$
+
+** Proof
+
+Since $G$ is connected, $\forall x,y,z \in V : \exists x \leadsto y, y \leadsto z, x \leadsto z$
+
+Let's say that $dist(x,y) = |P_1|, dist(y,z) = |P_2|, dist(x,z) = |P_3|$, where $P_1, P_2, P_3$ are paths
+$x \leadsto y, y \leadsto z, x \leadsto z$ respectively.
+
+Then we have a concatenation walk $W = P_1 + P_2$
+
+$|W| = |P_1| + |P_2|$
+
+If $W$ is a path (has no repeating vertices), then by our definition of distance
+$|W| \geq dist(x,z)$, and thus $dist(x,y) + dist(y,z) \geq dist(x,z)$
+
+Otherwise, we remove all edges in $W$ between pairs of repeating vertices recursively until it's a path,
+which we will call $W'$
+
+Since $W'$ was obtained from $W$ by removing edges, $|W| \geq |W'|$
+
+At the same time, by the same logic as shown above, $|W'| \geq dist(x,z)$,
+and thus, once again $dist(x,y) + dist(y,z) \geq dist(x,z)$
+
+
+* Theorem 2
+
+** Statement
+
+For any connected graph $G$: $rad(G) \leq diam(G) \leq 2rad(G)$
+
+** Definitions:
+
+$\varepsilon(v) = \max\limits_{u \in V}dist(v,u)$
+
+$rad(G) = \min\limits_{v \in V}\varepsilon(v)$
+$diam(G) = \max\limits_{v \in V} \varepsilon(v)$
+
+** Proof:
+
+$rad(G) \leq diam(G)$ by definition.
+
+Let's choose $v,u,w \in V$ such that $\varepsilon(v) = rad(G)$, $dist(u,w) = diam(G)$.
+
+Per theorem 1: $dist(u,w) \leq dist(u,v) + dist(v,w)$.
+
+Since $\varepsilon(v) = rad(G)$, $dist(u,v) \leq rad(G)$ and $dist(v,w) \leq rad(G)$.
+
+Thus $diam(G) = dist(u,w) \leq dist(u,v) + dist(v,w) \leq 2rad(G)$.
+
+
+* Theorem 3
+
+** Statement
+
+A connected graph $G = \langle V,E \rangle$ is a tree /iff/ $|E| = |V| - 1$
+
+** Lemma 1
+
+*** Statement
+
+For any connected graph $G = \langle V,E \rangle$: $|E| \geq |V|-1$
+
+*** Proof
+
+Let's start with graph $G' = \langle V, \emptyset \rangle$, and add edges from $E$ that reduce the number
+of connected components one by one. $G'$ has $|V|$ connected components, and each added edge reduces that
+number 1, so we will need to add $|V| -1$ edges with this process to get a connected graph. Since $G$ is connected,  $|E| \geq |V|-1$.
+
+** Proof
+
+First, let's assume $|E| = |V| - 1$ and prove that $G$ is a tree.
+
+Suppose $G$ contains a cycle $C$.
+
+Per lemma 1, if we remove any one edge from $G$, it will cease to be connected.
+
+Let's remove an edge $e \in C$, calling the resulting graph $G'$
+
+Since $G$ is connected, $\forall v,u \in V: \exists P = v \leadsto u$ in $G$.
+We can replace all occurrences of $e$ in these paths with $C \setminus \{e\}$, getting equally valid paths.
+
+But since the only difference between $G$ and $G'$ is the edge $e$, these new paths exist in $G'$ as well,
+which means $G'$ is connected. The contradiction means our assumption was incorrect, and $G$
+contains no cycles, making it a tree by definition.
+
+Now, let's prove that for any tree $T \langle V,E \rangle$ : $|E| = |V| - 1$
+
+Let's build a minimal connected subgraph $G'$ as in lemma 1.
+If we add another edge ${{v,u}}$ from $T$, we create a cycle, as $G'$ was already connected, thus having a
+path between $v$ and $u$, and our newly added edge is another. But since $T$ is a tree it by definition
+can't contain any cycles, which means there is no such edge, $T = G'$ and thus $|E| = |V| - 1$.
+
+* Theorem 4
+
+** Statement
+
+Given a connected graph $G = \langle V, E \rangle$ with $n$ vertices, if $\delta(G) \geq \lfloor n/2 \rfloor$, then $\lambda(G) = \delta(G)$.
+
+** Proof
+
+Let $k = \lfloor n/2 \rfloor$
+
+$\lambda(G) \leq \delta(G)$, since we can remove all edges incident to a vertex with minimum degree to detach it
+from the rest of the graph.
+
+Let's look at a minimum edge cut, and consider the smallest connected component produced by such a cut,
+calling it $H \langle V', E' \rangle$.
+
+Let $m = |V'|, l = |E'|$.
+
+Note that $m \geq 1$
+
+Since there have to be at least 2 components, $m <= k$.
+
+Each vertex in $V'$ can have at most $m - 1$ incident edges in $H$, while in $G$ it
+must have had at least $\delta(G)$ incident edges.
+
+This means at least $m(\delta(G) - (m-1))$ edges must have been removed.
+
+This is a quadratic function with a peak at $\frac{\delta(G)+1}{2}$, so its minimum on our interval $1 \leq m \leq k$
+will lie at either $m = 1$ or $m = k$ depending on which is further from the peak.
+
+Since $\delta(G) \geq k$, $\frac{\delta(G)+1}{2} - 1 \geq k - \frac{\delta(G)+1}{2}$, so we can use the value at $m = 1$, which is $\delta(G)$.
+
+Thus we have $\delta(G) \geq \lambda(G) \geq \delta(G)$, and so $\lambda(G) = \delta(G)$.
+
+* Theorem 5
+
+** Statement
+
+Every block of a block graph is a clique.
+
+** Proof
+
+We'll be looking at a graph $G$, its block graph $H$ and a block $J$ of $H$.
+
+Suppose $J$ is not a clique of $H$, meaning $\exists v,u \in V(J)$ that are not adjacent.
+
+Since $J$ is a block, $v$ and $u$ lie on a cycle, but since they are not adjacent, this cycle must be
+at least of length 4. Let's call the shortest such cycle $C$.
+
+Since $H$ is the block graph of $G$, each vertex in $V(C)$ corresponds to a block in $G$, and
+each edge in $E(C)$ corresponds to a cut vertex in $G$.
+
+For each $z \in V(C)$ we can find a path in the corresponding block of $G$ connecting the cut vertices of
+$G$ corresponding to edges incident to $z$ in $C$.
+
+Note that each pair of paths corresponding to adjacent vertices in $V(C)$ share an endpoint -
+the cut vertex corresponding to the edge connecting them.
+
+Moreover, the only vertex intersections any pair of these paths can have are cut vertices, since each lies in a separate block of $G$.
+
+But there are no intersections other than those already discussed, since otherwise 2 vertices
+in $V(C)$ are connected by an edge in $E(J)$ that is not in $E(C)$, which would mean we can shorten $C$ by
+replacing several edges with that one.
+
+All of this means we can chain these paths to produce a cycle in $G$ that passes through several blocks.
+
+This is a contradiction, since any 2 vertices on an cycle must lie in the same block, which means our assumption
+was incorrect and every block of $H$ is a clique.
