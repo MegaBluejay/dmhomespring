@@ -14261,87 +14261,24 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="data-loading">data loading<a class="anchor-link" href="#data-loading">&#182;</a></h1>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">yaml</span> <span class="kn">import</span> <span class="n">safe_load</span>
-<span class="kn">from</span> <span class="nn">haversine</span> <span class="kn">import</span> <span class="n">haversine</span>
-<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs jp-mod-noInput ">
 
-<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;data.yaml&#39;</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">data_file</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">safe_load</span><span class="p">(</span><span class="n">data_file</span><span class="p">)</span>
-
-<span class="c1"># for each country we store its list of neighbors and the location of its capital</span>
-<span class="n">europe</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">({</span><span class="n">country</span><span class="p">:</span> <span class="p">{</span><span class="n">neigh</span><span class="p">:</span> <span class="n">haversine</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;loc&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">neigh</span><span class="p">][</span><span class="s1">&#39;loc&#39;</span><span class="p">])</span>
-                    <span class="k">for</span> <span class="n">neigh</span> <span class="ow">in</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;neighs&#39;</span><span class="p">]}</span> <span class="k">for</span> <span class="n">country</span><span class="p">,</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
-
-<span class="c1"># for the purposes of many of these tasks we&#39;ll be using a maximum connected component</span>
-<span class="n">g</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">europe</span><span class="o">.</span><span class="n">connected_components_subgraphs</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">Graph</span><span class="o">.</span><span class="n">order</span><span class="p">)</span>
-
-<span class="c1"># networkx and sage both offer useful tools, so we&#39;ll be using them both</span>
-<span class="n">nxeur</span> <span class="o">=</span> <span class="n">europe</span><span class="o">.</span><span class="n">networkx_graph</span><span class="p">()</span>
-<span class="n">nxg</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">networkx_graph</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs jp-mod-noInput ">
 
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="a">a<a class="anchor-link" href="#a">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Prove that $G'$ is a planar by drawing it on a plane with no
 intersection of edges.</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vs</span> <span class="o">=</span> <span class="n">europe</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vs</span><span class="p">)}</span>
-<span class="n">layout</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">planar_layout</span><span class="p">(</span><span class="n">nxeur</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">nxg</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">layout</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">nxeur</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">layout</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vs</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>0: Albania
@@ -14397,10 +14334,6 @@ intersection of edges.</p>
 
 <div class="jp-OutputArea-child">
 
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
 
 
 <div class="jp-RenderedImage jp-OutputArea-output ">
@@ -14430,50 +14363,15 @@ intersection of edges.</p>
 <p>$center(G) = \{v \in V \mid \varepsilon(v) = rad(G)\}$</p>
 <p>$\kappa(G)$ is the minimum number of vertices, the removal of which would result in the number of connected components in $G$ to be greater than 1</p>
 <p>$\lambda(G)$ is the minimum number of edges, the removal of which would result in the number of connected components in $G$ to  be greater than 1</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;|V| = </span><span class="si">{</span><span class="n">g</span><span class="o">.</span><span class="n">order</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;|E| = </span><span class="si">{</span><span class="n">g</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;δ(G) = </span><span class="si">{</span><span class="nb">min</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Δ(G) = </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;rad(G) = </span><span class="si">{</span><span class="n">g</span><span class="o">.</span><span class="n">radius</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;diam(G) = </span><span class="si">{</span><span class="n">g</span><span class="o">.</span><span class="n">diameter</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;girth(G) = </span><span class="si">{</span><span class="n">g</span><span class="o">.</span><span class="n">girth</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;center(G) = </span><span class="si">{</span><span class="n">g</span><span class="o">.</span><span class="n">center</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;κ(G) = </span><span class="si">{</span><span class="n">g</span><span class="o">.</span><span class="n">vertex_connectivity</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;λ(G) = </span><span class="si">{</span><span class="n">g</span><span class="o">.</span><span class="n">edge_connectivity</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>|V| = 42
@@ -14500,42 +14398,15 @@ center(G) = [&#39;Switzerland&#39;, &#39;Slovakia&#39;, &#39;Germany&#39;, &#39;
 <h1 id="c">c<a class="anchor-link" href="#c">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Find the minimum vertex coloring $Z : V \rightarrow \mathbb{N}$ of $G$</p>
 <h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2><p>A function $Z : V \rightarrow \mathbb{N}$ is a vertex coloring of $G$ <em>iff</em> $\forall (v,u) \in E : Z(v) \neq Z(u)$.</p>
 <p>A vertex coloring is minimum <em>iff</em> $\max\limits_{v \in V}Z(v)$ is minimum</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">coloring</span><span class="p">()</span>
-<span class="n">colormap</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">countries</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">colors</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">countries</span><span class="p">:</span>
-        <span class="n">colormap</span><span class="p">[</span><span class="n">country</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-<span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">country</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">colormap</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="si">}</span><span class="s1"> colors&#39;</span><span class="p">)</span>
-
-<span class="n">colorlist</span> <span class="o">=</span> <span class="s1">&#39;bgrm&#39;</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">nxg</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="p">[</span><span class="n">colorlist</span><span class="p">[</span><span class="n">colormap</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">nxg</span><span class="p">],</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">planar_layout</span><span class="p">(</span><span class="n">nxg</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Albania: 2
@@ -14587,10 +14458,6 @@ Vatican City: 1
 
 <div class="jp-OutputArea-child">
 
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
 
 
 <div class="jp-RenderedImage jp-OutputArea-output ">
@@ -14611,40 +14478,15 @@ Vatican City: 1
 <h1 id="d">d<a class="anchor-link" href="#d">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Find the minimum edge coloring $X : E \rightarrow \mathbb{N}$ of $G$</p>
 <h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2><p>A function $X : E \rightarrow \mathbb{N}$ is an edge coloring of $G$ <em>iff</em> for any 2 adjacent edges $e_1, e_2 \in E$ : $X(e_1) \neq X(e_2)$</p>
 <p>An edge coloring is minimum <em>iff</em> $\max\limits_{e \in E}X(e)$ is minimum</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sage.graphs.graph_coloring</span> <span class="kn">import</span> <span class="n">edge_coloring</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="n">edge_coloring</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-<span class="n">colormap</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edges</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">colors</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
-        <span class="n">colormap</span><span class="p">[</span><span class="n">edge</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-<span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">u</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">colormap</span><span class="p">[(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">)]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="si">}</span><span class="s1"> colors&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Albania - Greece: 0
@@ -14750,34 +14592,15 @@ Slovakia - Ukraine: 2
 <h1 id="e">e<a class="anchor-link" href="#e">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Find the maximum clique $Q \subseteq V$ of $G$</p>
 <h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2><p>$Q \subseteq V$ is a clique of $G$ <em>iff</em> $\forall v,u \in Q : v = u \vee \{v,u\} \in E$</p>
 <p>A clique is maximum by cardinality</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clique</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">clique_maximum</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">clique</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">clique</span><span class="p">)</span><span class="si">}</span><span class="s1"> vertices&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[&#39;Lithuania&#39;, &#39;Belarus&#39;, &#39;Latvia&#39;, &#39;Russia&#39;]
@@ -14796,34 +14619,15 @@ Slovakia - Ukraine: 2
 <h1 id="f">f<a class="anchor-link" href="#f">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Find the maximum stable set $S \subseteq V$ of $G$</p>
 <h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2><p>$S \subseteq V$ is a stable set of $G$ <em>iff</em> $\forall v,u \in S : v = u \vee \{v,u\} \notin E$</p>
 <p>A stable set is maximum by cardinality</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stable_set</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">independent_set</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">stable_set</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">stable_set</span><span class="p">)</span><span class="si">}</span><span class="s1"> vertices&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[&#39;Moldova&#39;, &#39;Netherlands&#39;, &#39;Monaco&#39;, &#39;Bosnia and Herzegovina&#39;, &#39;Luxembourg&#39;, &#39;Vatican City&#39;, &#39;Sweden&#39;, &#39;Lithuania&#39;, &#39;Andorra&#39;, &#39;Albania&#39;, &#39;Czech Republic&#39;, &#39;Portugal&#39;, &#39;San Marino&#39;, &#39;Denmark&#39;, &#39;Slovenia&#39;, &#39;Estonia&#39;, &#39;Liechtenstein&#39;, &#39;Turkey&#39;]
@@ -14842,34 +14646,15 @@ Slovakia - Ukraine: 2
 <h1 id="g">g<a class="anchor-link" href="#g">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Find the maximum matching $M  \subseteq E$ of $G$</p>
 <h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2><p>$M \subseteq E$ is a matching of $G$ <em>iff</em> $\forall e_1,e_2 \in M : e_1 = e_2 \vee (e_1 \cap e_2) = \emptyset$</p>
 <p>A matching is maximum by cardinality</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">matching</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">matching</span><span class="p">(</span><span class="n">use_edge_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">([(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">w</span> <span class="ow">in</span> <span class="n">matching</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">matching</span><span class="p">)</span><span class="si">}</span><span class="s1"> edges&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[(&#39;Slovakia&#39;, &#39;Ukraine&#39;), (&#39;Russia&#39;, &#39;Finland&#39;), (&#39;Poland&#39;, &#39;Czech Republic&#39;), (&#39;Lithuania&#39;, &#39;Belarus&#39;), (&#39;Montenegro&#39;, &#39;Kosovo&#39;), (&#39;Spain&#39;, &#39;Portugal&#39;), (&#39;Belgium&#39;, &#39;Luxembourg&#39;), (&#39;Norway&#39;, &#39;Sweden&#39;), (&#39;Andorra&#39;, &#39;France&#39;), (&#39;Albania&#39;, &#39;North Macedonia&#39;), (&#39;Latvia&#39;, &#39;Estonia&#39;), (&#39;Denmark&#39;, &#39;Germany&#39;), (&#39;Romania&#39;, &#39;Bulgaria&#39;), (&#39;Serbia&#39;, &#39;Bosnia and Herzegovina&#39;), (&#39;Croatia&#39;, &#39;Slovenia&#39;), (&#39;Liechtenstein&#39;, &#39;Switzerland&#39;), (&#39;Turkey&#39;, &#39;Greece&#39;), (&#39;Italy&#39;, &#39;San Marino&#39;), (&#39;Austria&#39;, &#39;Hungary&#39;)]
@@ -14888,34 +14673,15 @@ Slovakia - Ukraine: 2
 <h1 id="h">h<a class="anchor-link" href="#h">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Find the minimum vertex cover $R \subseteq V$ of $G$</p>
 <h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2><p>$R \subseteq V$ is a vertex cover of $G$ <em>iff</em> $\forall e \in E : \exists v \in R : v \in e$</p>
 <p>A vertex cover is minimum by cardinality</p>
-<h2 id="Solutions">Solutions<a class="anchor-link" href="#Solutions">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vertex_cover</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">vertex_cover</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">vertex_cover</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">vertex_cover</span><span class="p">)</span><span class="si">}</span><span class="s1"> vertices&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[&#39;Switzerland&#39;, &#39;Slovakia&#39;, &#39;Bulgaria&#39;, &#39;Norway&#39;, &#39;Germany&#39;, &#39;Montenegro&#39;, &#39;Belarus&#39;, &#39;Belgium&#39;, &#39;France&#39;, &#39;Poland&#39;, &#39;Kosovo&#39;, &#39;Italy&#39;, &#39;Latvia&#39;, &#39;Russia&#39;, &#39;Croatia&#39;, &#39;North Macedonia&#39;, &#39;Austria&#39;, &#39;Greece&#39;, &#39;Romania&#39;, &#39;Finland&#39;, &#39;Serbia&#39;, &#39;Spain&#39;, &#39;Ukraine&#39;, &#39;Hungary&#39;]
@@ -14936,42 +14702,15 @@ Slovakia - Ukraine: 2
 <p>An edge cover is minimum by cardinality</p>
 <h2 id="Explanation">Explanation<a class="anchor-link" href="#Explanation">&#182;</a></h2><p>We start with a maximum matching and add edges greedily to cover unmatched vertices</p>
 <p>A proof of correctness can be found <a href="https://cs.stackexchange.com/questions/110819/solving-the-min-edge-cover-using-the-maximum-matching-algorithm">here</a></p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cover</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">matching</span><span class="p">(</span><span class="n">use_edge_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">order</span><span class="p">()</span>
-<span class="n">vs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="p">[{</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">}</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">w</span> <span class="ow">in</span> <span class="n">cover</span><span class="p">])</span>
-<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">vs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">w</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="ow">in</span> <span class="n">vs</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="n">u</span> <span class="ow">in</span> <span class="n">vs</span><span class="p">):</span>
-            <span class="n">vs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-            <span class="n">vs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-            <span class="n">cover</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">w</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">([(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">w</span> <span class="ow">in</span> <span class="n">cover</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cover</span><span class="p">)</span><span class="si">}</span><span class="s1"> edges&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[(&#39;Slovakia&#39;, &#39;Ukraine&#39;), (&#39;Russia&#39;, &#39;Finland&#39;), (&#39;Poland&#39;, &#39;Czech Republic&#39;), (&#39;Lithuania&#39;, &#39;Belarus&#39;), (&#39;Montenegro&#39;, &#39;Kosovo&#39;), (&#39;Spain&#39;, &#39;Portugal&#39;), (&#39;Belgium&#39;, &#39;Luxembourg&#39;), (&#39;Norway&#39;, &#39;Sweden&#39;), (&#39;Andorra&#39;, &#39;France&#39;), (&#39;Albania&#39;, &#39;North Macedonia&#39;), (&#39;Latvia&#39;, &#39;Estonia&#39;), (&#39;Denmark&#39;, &#39;Germany&#39;), (&#39;Romania&#39;, &#39;Bulgaria&#39;), (&#39;Serbia&#39;, &#39;Bosnia and Herzegovina&#39;), (&#39;Croatia&#39;, &#39;Slovenia&#39;), (&#39;Liechtenstein&#39;, &#39;Switzerland&#39;), (&#39;Turkey&#39;, &#39;Greece&#39;), (&#39;Italy&#39;, &#39;San Marino&#39;), (&#39;Austria&#39;, &#39;Hungary&#39;), (&#39;Belgium&#39;, &#39;Netherlands&#39;), (&#39;France&#39;, &#39;Monaco&#39;), (&#39;Italy&#39;, &#39;Vatican City&#39;), (&#39;Moldova&#39;, &#39;Romania&#39;)]
@@ -14995,121 +14734,19 @@ Slovakia - Ukraine: 2
 <p>After obtaining the minimum hamiltonian cycle of the distance graph, we replace every edge in it with the shortest path between its endpoints in $G$.</p>
 <p>Here we use an approximate algorithm because the traveling salesman problem is apparently already too hard for my pc even with this
 relatively small graph. the commented cell contains the exact evaluation that didn't finish in an hour for me</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># auxiliary functions used for path reconstruction</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">tee</span>
-<span class="k">def</span> <span class="nf">pairwise</span><span class="p">(</span><span class="n">it</span><span class="p">):</span>
-    <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">tee</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
-    <span class="nb">next</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs jp-mod-noInput ">
 
-<span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">):</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span><span class="p">]</span>
-    <span class="k">while</span> <span class="n">p</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">v</span><span class="p">:</span>
-        <span class="n">p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ps</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">p</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
-    <span class="k">return</span> <span class="n">p</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs jp-mod-noInput ">
 
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># ds, ps = g.shortest_path_all_pairs()</span>
-<span class="c1"># h = Graph(ds)</span>
-<span class="c1"># h.allow_loops(False)</span>
-<span class="c1"># tsp = h.traveling_salesman_problem(use_edge_labels=True)</span>
-<span class="c1"># ans_in_full = list(tsp.breadth_first_search(&#39;Russia&#39;))+[&#39;Russia&#39;]</span>
-<span class="c1"># ans = sum([path(v,u)[:-1] for v,u in pairwise(ans_in_full)], [])</span>
-<span class="c1"># ans.append(ans[0])</span>
-<span class="c1"># print(ans)</span>
-<span class="c1"># print(f&#39;{len(ans)-1} edges&#39;)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># note: starting node 2 (Austria) produces optimal results,</span>
-<span class="c1"># set to False to skip all others and speed things up</span>
-<span class="n">check_all_starts</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="kn">from</span> <span class="nn">ortools.constraint_solver</span> <span class="kn">import</span> <span class="n">pywrapcp</span><span class="p">,</span> <span class="n">routing_enums_pb2</span>
-
-<span class="n">vs</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span>
-
-<span class="n">n</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">order</span><span class="p">()</span>
-<span class="n">h</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ps</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">shortest_path_all_pairs</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">matrix</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">distance_matrix</span><span class="p">()</span>
-
-
-<span class="n">the_cycle</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">check_all_starts</span> <span class="k">else</span> <span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
-    <span class="n">manager</span> <span class="o">=</span> <span class="n">pywrapcp</span><span class="o">.</span><span class="n">RoutingIndexManager</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-    <span class="n">routing</span> <span class="o">=</span> <span class="n">pywrapcp</span><span class="o">.</span><span class="n">RoutingModel</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">dist_callback</span><span class="p">(</span><span class="n">from_index</span><span class="p">,</span> <span class="n">to_index</span><span class="p">):</span>
-        <span class="n">from_node</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">IndexToNode</span><span class="p">(</span><span class="n">from_index</span><span class="p">)</span>
-        <span class="n">to_node</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">IndexToNode</span><span class="p">(</span><span class="n">to_index</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">matrix</span><span class="p">[</span><span class="n">from_node</span><span class="p">][</span><span class="n">to_node</span><span class="p">]</span>
-
-    <span class="n">transit_callback_index</span> <span class="o">=</span> <span class="n">routing</span><span class="o">.</span><span class="n">RegisterTransitCallback</span><span class="p">(</span><span class="n">dist_callback</span><span class="p">)</span>
-    <span class="n">routing</span><span class="o">.</span><span class="n">SetArcCostEvaluatorOfAllVehicles</span><span class="p">(</span><span class="n">transit_callback_index</span><span class="p">)</span>
-    <span class="n">search_params</span> <span class="o">=</span> <span class="n">pywrapcp</span><span class="o">.</span><span class="n">DefaultRoutingSearchParameters</span><span class="p">()</span>
-    <span class="n">search_params</span><span class="o">.</span><span class="n">first_solution_strategy</span> <span class="o">=</span> <span class="n">routing_enums_pb2</span><span class="o">.</span><span class="n">FirstSolutionStrategy</span><span class="o">.</span><span class="n">PATH_CHEAPEST_ARC</span>
-
-    <span class="n">solution</span> <span class="o">=</span> <span class="n">routing</span><span class="o">.</span><span class="n">SolveWithParameters</span><span class="p">(</span><span class="n">search_params</span><span class="p">)</span>
-    <span class="n">ans_in_full</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">index</span> <span class="o">=</span> <span class="n">routing</span><span class="o">.</span><span class="n">Start</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="n">routing</span><span class="o">.</span><span class="n">IsEnd</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
-        <span class="n">ans_in_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">manager</span><span class="o">.</span><span class="n">IndexToNode</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">solution</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="n">routing</span><span class="o">.</span><span class="n">NextVar</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
-    <span class="n">ans_in_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ans_in_full</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-    <span class="n">ans</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">path</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span><span class="n">u</span> <span class="ow">in</span> <span class="n">pairwise</span><span class="p">(</span><span class="n">ans_in_full</span><span class="p">)],</span> <span class="p">[])</span>
-    <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">final_ans</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">vs</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">,</span> <span class="n">ans</span><span class="p">))</span>
-    <span class="n">the_cycle</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">the_cycle</span><span class="p">,</span> <span class="n">final_ans</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">the_cycle</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">the_cycle</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1"> edges&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[&#39;Austria&#39;, &#39;Liechtenstein&#39;, &#39;Switzerland&#39;, &#39;Germany&#39;, &#39;Denmark&#39;, &#39;Germany&#39;, &#39;Luxembourg&#39;, &#39;Belgium&#39;, &#39;Netherlands&#39;, &#39;France&#39;, &#39;Monaco&#39;, &#39;France&#39;, &#39;Andorra&#39;, &#39;Spain&#39;, &#39;Portugal&#39;, &#39;Spain&#39;, &#39;France&#39;, &#39;Italy&#39;, &#39;San Marino&#39;, &#39;Italy&#39;, &#39;Vatican City&#39;, &#39;Italy&#39;, &#39;Slovenia&#39;, &#39;Croatia&#39;, &#39;Serbia&#39;, &#39;Bosnia and Herzegovina&#39;, &#39;Montenegro&#39;, &#39;Kosovo&#39;, &#39;North Macedonia&#39;, &#39;Albania&#39;, &#39;Greece&#39;, &#39;Turkey&#39;, &#39;Bulgaria&#39;, &#39;Romania&#39;, &#39;Moldova&#39;, &#39;Ukraine&#39;, &#39;Belarus&#39;, &#39;Lithuania&#39;, &#39;Latvia&#39;, &#39;Estonia&#39;, &#39;Russia&#39;, &#39;Finland&#39;, &#39;Sweden&#39;, &#39;Norway&#39;, &#39;Russia&#39;, &#39;Poland&#39;, &#39;Czech Republic&#39;, &#39;Slovakia&#39;, &#39;Hungary&#39;, &#39;Austria&#39;]
@@ -15128,34 +14765,15 @@ relatively small graph. the commented cell contains the exact evaluation that di
 <h1 id="k">k<a class="anchor-link" href="#k">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Find the shortest closed walk $U$ that visits every edge of $G$</p>
 <h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2><p>A eulerian circuit is a ciruit that visits each edge exactly once</p>
 <h2 id="Explanation">Explanation<a class="anchor-link" href="#Explanation">&#182;</a></h2><p>In order solve this problem we can add parallel edges to the graph and then find a eulerian curcuit in the produced multigraph. Essentially we're reframing our question by saying that visiting the same edge several times is the same as visiting each of several parallel edges exactly once. The problem then becomes that of adding optimal parallel edges, which thankfully networkx is capable of.</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">eul</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">eulerian_circuit</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">eulerize</span><span class="p">(</span><span class="n">nxg</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">([</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">eul</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">eul</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">eul</span><span class="p">)</span><span class="si">}</span><span class="s1"> edges&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[&#39;Moldova&#39;, &#39;Ukraine&#39;, &#39;Romania&#39;, &#39;Ukraine&#39;, &#39;Russia&#39;, &#39;Latvia&#39;, &#39;Estonia&#39;, &#39;Russia&#39;, &#39;Poland&#39;, &#39;Ukraine&#39;, &#39;Hungary&#39;, &#39;Serbia&#39;, &#39;Romania&#39;, &#39;Hungary&#39;, &#39;Croatia&#39;, &#39;Hungary&#39;, &#39;Austria&#39;, &#39;Slovenia&#39;, &#39;Hungary&#39;, &#39;Slovakia&#39;, &#39;Ukraine&#39;, &#39;Belarus&#39;, &#39;Poland&#39;, &#39;Belarus&#39;, &#39;Russia&#39;, &#39;Finland&#39;, &#39;Sweden&#39;, &#39;Norway&#39;, &#39;Finland&#39;, &#39;Norway&#39;, &#39;Russia&#39;, &#39;Lithuania&#39;, &#39;Belarus&#39;, &#39;Latvia&#39;, &#39;Lithuania&#39;, &#39;Poland&#39;, &#39;Czech Republic&#39;, &#39;Austria&#39;, &#39;Germany&#39;, &#39;Denmark&#39;, &#39;Germany&#39;, &#39;Poland&#39;, &#39;Slovakia&#39;, &#39;Austria&#39;, &#39;Italy&#39;, &#39;San Marino&#39;, &#39;Italy&#39;, &#39;Vatican City&#39;, &#39;Italy&#39;, &#39;France&#39;, &#39;Spain&#39;, &#39;Portugal&#39;, &#39;Spain&#39;, &#39;Andorra&#39;, &#39;France&#39;, &#39;Belgium&#39;, &#39;Germany&#39;, &#39;France&#39;, &#39;Monaco&#39;, &#39;France&#39;, &#39;Luxembourg&#39;, &#39;Germany&#39;, &#39;Netherlands&#39;, &#39;France&#39;, &#39;Luxembourg&#39;, &#39;Belgium&#39;, &#39;Netherlands&#39;, &#39;France&#39;, &#39;Switzerland&#39;, &#39;Germany&#39;, &#39;Czech Republic&#39;, &#39;Slovakia&#39;, &#39;Austria&#39;, &#39;Switzerland&#39;, &#39;Austria&#39;, &#39;Liechtenstein&#39;, &#39;Switzerland&#39;, &#39;Italy&#39;, &#39;Slovenia&#39;, &#39;Croatia&#39;, &#39;Serbia&#39;, &#39;North Macedonia&#39;, &#39;Greece&#39;, &#39;Albania&#39;, &#39;Kosovo&#39;, &#39;Serbia&#39;, &#39;Montenegro&#39;, &#39;Kosovo&#39;, &#39;North Macedonia&#39;, &#39;Albania&#39;, &#39;Montenegro&#39;, &#39;Croatia&#39;, &#39;Bosnia and Herzegovina&#39;, &#39;Montenegro&#39;, &#39;Bosnia and Herzegovina&#39;, &#39;Serbia&#39;, &#39;Bulgaria&#39;, &#39;Greece&#39;, &#39;Turkey&#39;, &#39;Bulgaria&#39;, &#39;North Macedonia&#39;, &#39;Bulgaria&#39;, &#39;Romania&#39;, &#39;Moldova&#39;]
@@ -15176,40 +14794,15 @@ relatively small graph. the commented cell contains the exact evaluation that di
 <p>A graph is 2-vertex-connected <em>iff</em> it contains no cut vertices.</p>
 <p>A block of $G$ is a 2-vertex-connected subgraph of $G$ that is maximal by inclusion.</p>
 <p>A block-cut tree of $G$ is a tree which has a vertex for each block and each cut vertex of $G$ and a edge connecting each pair of vertices corresponding to a cut vertex and a block for which the vertex is in the block</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span> <span class="o">=</span> <span class="n">europe</span><span class="o">.</span><span class="n">blocks_and_cuts_tree</span><span class="p">()</span>
-<span class="n">nxtree</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">networkx_graph</span><span class="p">()</span>
-<span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;B&#39;</span><span class="p">]</span>
-<span class="n">q</span> <span class="o">=</span> <span class="p">{</span><span class="n">typ</span><span class="p">:</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">t</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span> <span class="k">if</span> <span class="n">t</span><span class="o">==</span><span class="n">typ</span><span class="p">]</span> <span class="k">for</span> <span class="n">typ</span> <span class="ow">in</span> <span class="s1">&#39;BC&#39;</span><span class="p">}</span>
-<span class="k">for</span> <span class="n">typ</span><span class="p">,</span> <span class="n">vs</span> <span class="ow">in</span> <span class="n">q</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vs</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">typ</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">nxtree</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;B&#39;</span> <span class="k">else</span> <span class="s1">&#39;g&#39;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">nxtree</span><span class="p">],</span>
-       <span class="n">labels</span><span class="o">=</span><span class="p">{(</span><span class="n">typ</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">typ</span><span class="si">}{</span><span class="n">q</span><span class="p">[</span><span class="n">typ</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">typ</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">vertices</span><span class="p">()})</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>B0: (&#39;Andorra&#39;, &#39;France&#39;, &#39;Spain&#39;)
@@ -15235,10 +14828,6 @@ C4: Spain
 
 <div class="jp-OutputArea-child">
 
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
 
 
 <div class="jp-RenderedImage jp-OutputArea-output ">
@@ -15260,33 +14849,15 @@ C4: Spain
 <h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2><p>A bridge is an edge the removal of which splits the graph, increasing its number of connected components</p>
 <p>A graph is 2-edge-connected <em>iff</em> it contains no bridges</p>
 <p>A 2-edge-connected component of $G$ is a 2-edge-connected subgraph of $G$ that is maximal by inclusion</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">k_edge_components</span><span class="p">(</span><span class="n">nxeur</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">comp</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[&#39;United Kingdom&#39;]
@@ -15313,40 +14884,15 @@ C4: Spain
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="n">n<a class="anchor-link" href="#n">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Construct an SPQR tree of the largest biconnected component of $G$</p>
 <h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2><p>An SPQR tree is a tree representing the triconnected components of a biconnected graph, the exact structure of which is too long to explain here and can be found on <a href="https://en.wikipedia.org/wiki/SPQR_tree">Wikipedia</a></p>
-<h1 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h1>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">blocks</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">blocks_and_cut_vertices</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">mbcc</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">))</span>
-<span class="n">tree</span> <span class="o">=</span> <span class="n">mbcc</span><span class="o">.</span><span class="n">spqr_tree</span><span class="p">()</span>
-<span class="n">nxtree</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">networkx_graph</span><span class="p">()</span>
-<span class="n">q</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">:</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">typ</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">nxtree</span> <span class="k">if</span> <span class="n">typ</span><span class="o">==</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="s1">&#39;SPQR&#39;</span><span class="p">}</span>
-<span class="k">for</span> <span class="n">typ</span><span class="p">,</span> <span class="n">vs</span> <span class="ow">in</span> <span class="n">q</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vs</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">typ</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">nxtree</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">{(</span><span class="n">typ</span><span class="p">,</span><span class="n">v</span><span class="p">):</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">typ</span><span class="si">}{</span><span class="n">q</span><span class="p">[</span><span class="n">typ</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">typ</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">nxtree</span><span class="p">})</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>S0: [&#39;Estonia&#39;, &#39;Latvia&#39;, &#39;Russia&#39;]
@@ -15368,10 +14914,6 @@ R2: [&#39;Albania&#39;, &#39;Austria&#39;, &#39;Bosnia and Herzegovina&#39;, &#3
 
 <div class="jp-OutputArea-child">
 
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
 
 
 <div class="jp-RenderedImage jp-OutputArea-output ">
@@ -15391,36 +14933,15 @@ R2: [&#39;Albania&#39;, &#39;Austria&#39;, &#39;Bosnia and Herzegovina&#39;, &#3
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="o">o<a class="anchor-link" href="#o">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Find the minimum (w.r.t. the total weight of edges) spanning tree $T$ for the maximum connected component of the weighted version of $G$</p>
 <h2 id="Definition">Definition<a class="anchor-link" href="#Definition">&#182;</a></h2><p>A spanning tree of $G$ is a tree with the same vertex set as $G$</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mst</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">edges</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">min_spanning_tree</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">mst</span><span class="o">.</span><span class="n">edge_labels</span><span class="p">()))</span>
-
-<span class="n">nxmst</span> <span class="o">=</span> <span class="n">mst</span><span class="o">.</span><span class="n">networkx_graph</span><span class="p">()</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">nxmst</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">planar_layout</span><span class="p">(</span><span class="n">nxmst</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>22164.45282255872
@@ -15429,10 +14950,6 @@ R2: [&#39;Albania&#39;, &#39;Austria&#39;, &#39;Bosnia and Herzegovina&#39;, &#3
 </div>
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 
 
@@ -15454,58 +14971,17 @@ R2: [&#39;Albania&#39;, &#39;Austria&#39;, &#39;Bosnia and Herzegovina&#39;, &#3
 <h1 id="p">p<a class="anchor-link" href="#p">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Find the $centroid(T)$ (w.r.t. the edge weight function).</p>
 <h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2><p>A branch of a tree $T$ starting at one of its vertices $v$ is a subtree of $T$ in which $v$ has exactly one neighbor.</p>
 <p>The centroid of a tree (w.r.t. edge weight) is the set of vertices with minimum weight, where we define the weight of a vertex to be the maximum total edge weight of a branch starting at that vertex</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">minimal</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
-    <span class="n">lst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">lst</span><span class="p">:</span>
-        <span class="n">m</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">lst</span><span class="p">))</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lst</span> <span class="k">if</span> <span class="n">key</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="n">m</span><span class="p">]</span>
-    <span class="k">return</span> <span class="p">[]</span>
-</pre></div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs jp-mod-noInput ">
 
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">getw</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">branch</span><span class="o">.</span><span class="n">edge_labels</span><span class="p">())</span> <span class="k">for</span> <span class="n">branch</span> <span class="ow">in</span>
-               <span class="n">mst</span><span class="o">.</span><span class="n">cleave</span><span class="p">([</span><span class="n">v</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">mst</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> \
-                                   <span class="k">else</span> <span class="nb">sum</span><span class="p">(</span><span class="n">mst</span><span class="o">.</span><span class="n">edge_labels</span><span class="p">())</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">minimal</span><span class="p">(</span><span class="n">mst</span><span class="o">.</span><span class="n">vertices</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">getw</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[&#39;Hungary&#39;]
@@ -15522,33 +14998,15 @@ R2: [&#39;Albania&#39;, &#39;Austria&#39;, &#39;Bosnia and Herzegovina&#39;, &#3
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="q">q<a class="anchor-link" href="#q">&#182;</a></h1><h2 id="Statement">Statement<a class="anchor-link" href="#Statement">&#182;</a></h2><p>Construct the Prüfer code for $T$</p>
 <h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2><p>The Prüfer code of a tree labeled with integers $\{1,2,...,n\}$ is a sequence of $n-2$ labels that uniquely identifies that tree.</p>
-<h2 id="Solution">Solution<a class="anchor-link" href="#Solution">&#182;</a></h2>
+<h2 id="Answer">Answer<a class="anchor-link" href="#Answer">&#182;</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nxmst_copy</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">relabel_nodes</span><span class="p">(</span><span class="n">nxmst</span><span class="p">,</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mst</span><span class="o">.</span><span class="n">vertices</span><span class="p">())})</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">to_prufer_sequence</span><span class="p">(</span><span class="n">nxmst_copy</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
 <div class="jp-Cell-outputWrapper">
-
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[12, 40, 12, 7, 30, 2, 13, 31, 2, 31, 2, 31, 12, 12, 12, 17, 24, 31, 40, 36, 16, 30, 40, 15, 12, 16, 11, 31, 40, 2, 14, 0, 24, 7, 15, 22, 30, 15, 2, 16]

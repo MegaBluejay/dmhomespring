@@ -6,20 +6,6 @@
 #+TITLE: Homework Spring
 #+LATEX_HEADER: \usepackage{parskip}
 
-* Practical tasks
-
-[[https://github.com/MegaBluejay/dmhomespring][_Repo_]]
-
-Instructions:
-
- - [[https://doc.sagemath.org/html/en/installation/][_install sagemath_]]
- - ~sage --python -m pip install -r requirements.txt~
- - if you want to reload data: ~sage --python util.py~
- - ~sage -n~
- - in this jupyter session open provided .ipynb
-
-An html export of the notebook is also provided.
-
 * Theorem 1 (Triangle Inequality)
 
 ** Statement
@@ -191,3 +177,17 @@ All of this means we can chain these paths to produce a cycle in $G$ that passes
 
 This is a contradiction, since any 2 vertices on an cycle must lie in the same block, which means our assumption
 was incorrect and every block of $H$ is a clique.
+
+* Practical tasks
+
+[[https://github.com/MegaBluejay/dmhomespring][_Repo_]]
+
+Instructions:
+
+ - [[https://doc.sagemath.org/html/en/installation/][_install sagemath_]]
+ - ~sage --python -m pip install -r requirements.txt~
+ - if you want to reload data: ~sage --python util.py~
+ - ~sage -n~
+ - in this jupyter session open provided .ipynb
+
+An html export of the notebook is also provided.
