@@ -1,6 +1,9 @@
 #+STARTUP: latexpreview
 #+options: num:nil
 #+options: toc:nil
+#+options: date:nil
+#+AUTHOR: Moiseev Dmitrii
+#+TITLE: Homework Spring
 #+LATEX_HEADER: \usepackage{parskip}
 
 * Practical tasks
