@@ -1,0 +1,9 @@
+bs4
+ratelimit
+requests
+tqdm
+PyYAML
+toolz
+networkx
+haversine
+ortools

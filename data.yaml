@@ -1,0 +1,412 @@
+Albania:
+  loc:
+  - 41.32889
+  - 19.81778
+  neighs:
+  - Greece
+  - Kosovo
+  - North Macedonia
+  - Montenegro
+Andorra:
+  loc:
+  - 42.5
+  - 1.5
+  neighs:
+  - France
+  - Spain
+Austria:
+  loc:
+  - 48.2
+  - 16.367
+  neighs:
+  - Czech Republic
+  - Germany
+  - Hungary
+  - Italy
+  - Liechtenstein
+  - Slovakia
+  - Slovenia
+  - Switzerland
+Belarus:
+  loc:
+  - 53.9
+  - 27.567
+  neighs:
+  - Latvia
+  - Lithuania
+  - Poland
+  - Russia
+  - Ukraine
+Belgium:
+  loc:
+  - 50.85
+  - 4.35
+  neighs:
+  - France
+  - Germany
+  - Luxembourg
+  - Netherlands
+Bosnia and Herzegovina:
+  loc:
+  - 43.867
+  - 18.417
+  neighs:
+  - Croatia
+  - Montenegro
+  - Serbia
+Bulgaria:
+  loc:
+  - 42.7
+  - 23.33
+  neighs:
+  - Greece
+  - North Macedonia
+  - Romania
+  - Serbia
+  - Turkey
+Croatia:
+  loc:
+  - 45.817
+  - 15.983
+  neighs:
+  - Bosnia and Herzegovina
+  - Hungary
+  - Montenegro
+  - Serbia
+  - Slovenia
+Cyprus:
+  loc:
+  - 35.1725
+  - 33.365
+  neighs: []
+Czech Republic:
+  loc:
+  - 50.083
+  - 14.417
+  neighs:
+  - Austria
+  - Germany
+  - Poland
+  - Slovakia
+Denmark:
+  loc:
+  - 55.67611
+  - 12.56833
+  neighs:
+  - Germany
+Estonia:
+  loc:
+  - 59.43722
+  - 24.74528
+  neighs:
+  - Latvia
+  - Russia
+Finland:
+  loc:
+  - 60.17083
+  - 24.9375
+  neighs:
+  - Norway
+  - Sweden
+  - Russia
+France:
+  loc:
+  - 48.856613
+  - 2.352222
+  neighs:
+  - Andorra
+  - Belgium
+  - Germany
+  - Italy
+  - Luxembourg
+  - Monaco
+  - Spain
+  - Switzerland
+Germany:
+  loc:
+  - 52.52
+  - 13.405
+  neighs:
+  - Austria
+  - Belgium
+  - Czech Republic
+  - Denmark
+  - France
+  - Luxembourg
+  - Netherlands
+  - Poland
+  - Switzerland
+Greece:
+  loc:
+  - 37.983972
+  - 23.727806
+  neighs:
+  - Albania
+  - Bulgaria
+  - Turkey
+  - North Macedonia
+Hungary:
+  loc:
+  - 47.4925
+  - 19.05139
+  neighs:
+  - Austria
+  - Croatia
+  - Romania
+  - Serbia
+  - Slovakia
+  - Slovenia
+  - Ukraine
+Iceland:
+  loc:
+  - 64.1475
+  - -21.935
+  neighs: []
+Ireland:
+  loc:
+  - 53.35
+  - -6.267
+  neighs:
+  - United Kingdom
+Italy:
+  loc:
+  - 41.883
+  - 12.5
+  neighs:
+  - Austria
+  - France
+  - San Marino
+  - Slovenia
+  - Switzerland
+  - Vatican City
+Kosovo:
+  loc:
+  - 42.66333
+  - 21.16222
+  neighs:
+  - Albania
+  - Montenegro
+  - North Macedonia
+  - Serbia
+Latvia:
+  loc:
+  - 56.94889
+  - 24.10639
+  neighs:
+  - Belarus
+  - Estonia
+  - Lithuania
+  - Russia
+Liechtenstein:
+  loc:
+  - 47.141
+  - 9.521
+  neighs:
+  - Austria
+  - Switzerland
+Lithuania:
+  loc:
+  - 54.683
+  - 25.283
+  neighs:
+  - Belarus
+  - Latvia
+  - Poland
+  - Russia
+Luxembourg:
+  loc:
+  - 49.61167
+  - 6.13194
+  neighs:
+  - Belgium
+  - France
+  - Germany
+Malta:
+  loc:
+  - 35.89833
+  - 14.5125
+  neighs: []
+Moldova:
+  loc:
+  - 47.022887
+  - 28.835335
+  neighs:
+  - Romania
+  - Ukraine
+Monaco:
+  loc:
+  - 43.733
+  - 7.417
+  neighs:
+  - France
+Montenegro:
+  loc:
+  - 42.4412861
+  - 19.2628917
+  neighs:
+  - Albania
+  - Bosnia and Herzegovina
+  - Croatia
+  - Kosovo
+  - Serbia
+Netherlands:
+  loc:
+  - 52.367
+  - 4.9
+  neighs:
+  - Belgium
+  - Germany
+  - France
+North Macedonia:
+  loc:
+  - 42.0
+  - 21.433
+  neighs:
+  - Albania
+  - Bulgaria
+  - Greece
+  - Kosovo
+  - Serbia
+Norway:
+  loc:
+  - 59.91389
+  - 10.75222
+  neighs:
+  - Finland
+  - Sweden
+  - Russia
+Poland:
+  loc:
+  - 52.233
+  - 21.017
+  neighs:
+  - Belarus
+  - Czech Republic
+  - Germany
+  - Lithuania
+  - Russia
+  - Slovakia
+  - Ukraine
+Portugal:
+  loc:
+  - 38.7252668
+  - -9.1500193
+  neighs:
+  - Spain
+Romania:
+  loc:
+  - 44.4325
+  - 26.10389
+  neighs:
+  - Bulgaria
+  - Hungary
+  - Moldova
+  - Serbia
+  - Ukraine
+Russia:
+  loc:
+  - 55.75583
+  - 37.61722
+  neighs:
+  - Belarus
+  - Estonia
+  - Finland
+  - Latvia
+  - Lithuania
+  - Norway
+  - Poland
+  - Ukraine
+San Marino:
+  loc:
+  - 43.9346
+  - 12.4473
+  neighs:
+  - Italy
+Serbia:
+  loc:
+  - 44.817
+  - 20.467
+  neighs:
+  - Bosnia and Herzegovina
+  - Bulgaria
+  - Croatia
+  - Hungary
+  - Kosovo
+  - Montenegro
+  - North Macedonia
+  - Romania
+Slovakia:
+  loc:
+  - 48.14389
+  - 17.10972
+  neighs:
+  - Austria
+  - Czech Republic
+  - Hungary
+  - Poland
+  - Ukraine
+Slovenia:
+  loc:
+  - 46.05556
+  - 14.50833
+  neighs:
+  - Austria
+  - Croatia
+  - Italy
+  - Hungary
+Spain:
+  loc:
+  - 40.417
+  - -3.717
+  neighs:
+  - Andorra
+  - France
+  - Portugal
+Sweden:
+  loc:
+  - 59.32944
+  - 18.06861
+  neighs:
+  - Finland
+  - Norway
+Switzerland:
+  loc:
+  - 46.94806
+  - 7.4475
+  neighs:
+  - Austria
+  - France
+  - Italy
+  - Liechtenstein
+  - Germany
+Turkey:
+  loc:
+  - 39.93
+  - 32.85
+  neighs:
+  - Bulgaria
+  - Greece
+Ukraine:
+  loc:
+  - 50.45
+  - 30.52333
+  neighs:
+  - Belarus
+  - Hungary
+  - Moldova
+  - Poland
+  - Romania
+  - Russia
+  - Slovakia
+United Kingdom:
+  loc:
+  - 51.50722
+  - -0.1275
+  neighs:
+  - Ireland
+Vatican City:
+  loc:
+  - 41.9025
+  - 12.4525
+  neighs:
+  - Italy
